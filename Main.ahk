@@ -11,11 +11,12 @@ SetTitleMatchMode "RegEx"
 ; Now developed with angst and malice in Pennsylvania
 
 ; Loads common settings from the ini file
-olCat := IniRead("settings.ini","scriptconf","olCat")
-sig := StrReplace(IniRead("settings.ini","scriptconf","sig"), "``n", "`n")
+olCat := IniRead("settings.ini", "scriptconf", "olCat")
+sig := StrReplace(IniRead("settings.ini", "scriptconf", "sig"), "``n", "`n")
+podPwd := IniRead("secrets.ini", "secrets", "podPwd")
 
 ; Grabs the users full name
-fullName := RegRead("HKEY_CURRENT_USER\Software\Microsoft\Office\Common\UserInfo","UserName")
+fullName := RegRead("HKEY_CURRENT_USER\Software\Microsoft\Office\Common\UserInfo", "UserName")
 
 ; Function Definitions
 #Include EmailFuncs.ahk
@@ -76,7 +77,7 @@ fullName := RegRead("HKEY_CURRENT_USER\Software\Microsoft\Office\Common\UserInfo
 		WinWaitActive("RE: ")
 		Send("!m{Enter}{Up 3}{Del}")
 	}
-	
+
 	; Forwards the email to ServiceNow
 	^!+f:: {
 		SetAsHandled()
@@ -87,9 +88,9 @@ fullName := RegRead("HKEY_CURRENT_USER\Software\Microsoft\Office\Common\UserInfo
 		fwdItem.Display
 		WinWaitActive("FW:")
 		Send("!m{Enter}^{Enter}")
-		If(WinWaitActive("Spelling: ",,3)) {
+		If (WinWaitActive("Spelling: ", , 3)) {
 			Send("{Esc}")
-			WinWaitActive("Microsoft Outlook",,," - Outlook")
+			WinWaitActive("Microsoft Outlook", , , " - Outlook")
 			Send("{Enter}")
 		}
 		Return
@@ -120,5 +121,13 @@ fullName := RegRead("HKEY_CURRENT_USER\Software\Microsoft\Office\Common\UserInfo
 	#HotIf (WinActive("Incident"))
 	{
 		^+s:: SendText(sig)
+	}
+
+	#HotIf (WinActive("Proofpoint"))
+	{
+		^+s:: {
+			Send("{Tab}+{Tab}helpdesk{Tab}")
+			SendText(podPwd)
+		}
 	}
 }
