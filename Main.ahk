@@ -125,7 +125,7 @@ fullName := RegRead("HKEY_CURRENT_USER\Software\Microsoft\Office\Common\UserInfo
 
 	#HotIf (WinActive("Proofpoint"))
 	{
-		^+s:: {
+		^+l:: {
 			Send("{Tab}+{Tab}helpdesk{Tab}")
 			SendText(podPwd)
 		}
