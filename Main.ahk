@@ -95,6 +95,22 @@ fullName := RegRead("HKEY_CURRENT_USER\Software\Microsoft\Office\Common\UserInfo
 		}
 		Return
 	}
+
+	^!+s:: {
+		SetAsHandled()
+		mailitem := GetCurrentEmail()
+		replyItem := mailItem.Reply
+		replyItem.Display
+		WinWaitActive("RE:")
+		Send("!m{Enter}{Up 2}")
+		SendText(GetFirstName())
+		Send("-{Enter 2}This is spam and can be deleted.^{Enter}")
+		If (WinWaitActive("Spelling: ", , 3)) {
+			Send("{Esc}")
+			WinWaitActive("Microsoft Outlook", , , " - Outlook")
+			Send("{Enter}")
+		}
+	}
 }
 
 ; Slack
