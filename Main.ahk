@@ -29,6 +29,8 @@ fullName := RegRead("HKEY_CURRENT_USER\Software\Microsoft\Office\Common\UserInfo
 ; Debug Key: Rebind for testing
 NumpadDot:: Click
 
+:*:/shrug::¯\_(ツ)_/¯
+
 ; VSCodium Hotkeys
 #HotIf (WinActive("ahk_exe VSCodium.exe"))
 {
