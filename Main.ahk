@@ -27,7 +27,7 @@ fullName := RegRead("HKEY_CURRENT_USER\Software\Microsoft\Office\Common\UserInfo
 ^!+r:: Reload
 
 ; Debug Key: Rebind for testing
-^!+d:: MsgBox("Unset")
+NumpadDot:: Click
 
 ; VSCodium Hotkeys
 #HotIf (WinActive("ahk_exe VSCodium.exe"))
