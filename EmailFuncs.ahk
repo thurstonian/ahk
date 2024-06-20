@@ -25,7 +25,7 @@ GetStandardName(name := "") {
     If (name = "") {
         name := GetCurrentSender()
     }
-    Return RegExReplace(name, "([\w-']+)(?:, )(\w+)", "$2 $1")
+    Return RegExReplace(name, "(.+),.+\b(\w{2,}).*", "$2 $1")
 }
 
 ; Extracts the first name from a Standard Name
