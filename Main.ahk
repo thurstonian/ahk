@@ -15,6 +15,9 @@ olCat := IniRead("settings.ini", "scriptconf", "olCat")
 sig := StrReplace(IniRead("settings.ini", "scriptconf", "sig"), "``n", "`n")
 podUser := IniRead("secrets.ini", "secrets", "podUser")
 podPwd := IniRead("secrets.ini", "secrets", "podPwd")
+ctxUser := IniRead("secrets.ini", "secrets", "ctxUser")
+ctxPwd := IniRead("secrets.ini", "secrets", "ctxPwd")
+ctxDom := IniRead("secrets.ini", "secrets", "ctxDom")
 
 ; Grabs the users full name
 fullName := RegRead("HKEY_CURRENT_USER\Software\Microsoft\Office\Common\UserInfo", "UserName")
@@ -141,6 +144,18 @@ fullName := RegRead("HKEY_CURRENT_USER\Software\Microsoft\Office\Common\UserInfo
 			SendText(podUser)
 			Send("{Tab}")
 			SendText(podPwd)
+		}
+	}
+
+	#HotIf (WinActive("Director"))
+	{
+		^+l:: {
+			Send("{Tab}+{Tab}")
+			SendText(ctxUser)
+			Send("{Tab}")
+			SendText(ctxPwd)
+			Send("{Tab}")
+			SendText(ctxDom)
 		}
 	}
 }
