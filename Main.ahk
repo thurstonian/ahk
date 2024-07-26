@@ -27,9 +27,6 @@ fullName := RegRead("HKEY_CURRENT_USER\Software\Microsoft\Office\Common\UserInfo
 ; Reloads Script
 ^!+r:: Reload
 
-; Debug Key: Rebind for testing
-NumpadDot:: Click
-
 :*:/shrug::¯\_(ツ)_/¯
 
 ; VSCodium Hotkeys
