@@ -13,7 +13,7 @@ SetTitleMatchMode "RegEx"
 ; Loads common settings from the ini file
 olCat := IniRead("settings.ini", "scriptconf", "olCat")
 sig := StrReplace(IniRead("settings.ini", "scriptconf", "sig"), "``n", "`n")
-podUser := IniRead("secrets.ini", "secrets". "podUser")
+podUser := IniRead("secrets.ini", "secrets", "podUser")
 podPwd := IniRead("secrets.ini", "secrets", "podPwd")
 
 ; Grabs the users full name
