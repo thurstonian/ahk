@@ -13,6 +13,7 @@ SetTitleMatchMode "RegEx"
 ; Loads common settings from the ini file
 olCat := IniRead("settings.ini", "scriptconf", "olCat")
 sig := StrReplace(IniRead("settings.ini", "scriptconf", "sig"), "``n", "`n")
+podUser := IniRead("secrets.ini", "secrets". "podUser")
 podPwd := IniRead("secrets.ini", "secrets", "podPwd")
 
 ; Grabs the users full name
@@ -139,7 +140,9 @@ NumpadDot:: Click
 	#HotIf (WinActive("Proofpoint"))
 	{
 		^+l:: {
-			Send("{Tab}+{Tab}helpdesk{Tab}")
+			Send("{Tab}+{Tab}")
+			SendText(podUser)
+			Send("{Tab}")
 			SendText(podPwd)
 		}
 	}
