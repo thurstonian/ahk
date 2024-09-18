@@ -15,9 +15,10 @@ olCat := IniRead("settings.ini", "scriptconf", "olCat")
 sig := StrReplace(IniRead("settings.ini", "scriptconf", "sig"), "``n", "`n")
 podUser := IniRead("secrets.ini", "secrets", "podUser")
 podPwd := IniRead("secrets.ini", "secrets", "podPwd")
-ctxUser := IniRead("secrets.ini", "secrets", "ctxUser")
-ctxPwd := IniRead("secrets.ini", "secrets", "ctxPwd")
-ctxDom := IniRead("secrets.ini", "secrets", "ctxDom")
+ADUser := IniRead("secrets.ini", "secrets", "ADUser")
+ADEmail := IniRead("secrets.ini", "secrets", "ADEmail")
+ADPwd := IniRead("secrets.ini", "secrets", "ADPwd")
+ADDom := IniRead("secrets.ini", "secrets", "ADDom")
 
 ; Grabs the users full name
 fullName := RegRead("HKEY_CURRENT_USER\Software\Microsoft\Office\Common\UserInfo", "UserName")
@@ -151,11 +152,21 @@ fullName := RegRead("HKEY_CURRENT_USER\Software\Microsoft\Office\Common\UserInfo
 	{
 		^+l:: {
 			Send("{Tab}+{Tab}")
-			SendText(ctxUser)
+			SendText(ADUser)
 			Send("{Tab}")
-			SendText(ctxPwd)
+			SendText(ADPwd)
 			Send("{Tab}")
-			SendText(ctxDom)
+			SendText(ADDom)
+		}
+	}
+
+	#HotIf (WinActive("Sign in to Cisco Finesse"))
+	{
+		^+l:: {
+			Send("{Tab}+{Tab}")
+			SendText(ADEmail)
+			Send("{Tab}")
+			SendText(ADPwd)
 		}
 	}
 }
