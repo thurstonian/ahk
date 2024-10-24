@@ -10,15 +10,15 @@ SetTitleMatchMode "RegEx"
 ; Originally Made with love in New Jersey
 ; Now developed with angst and malice in Pennsylvania
 
-; Loads common settings from the ini file
+; Loads common settings
 olCat := IniRead("settings.ini", "scriptconf", "olCat")
 sig := StrReplace(IniRead("settings.ini", "scriptconf", "sig"), "``n", "`n")
 podUser := IniRead("secrets.ini", "secrets", "podUser")
 podPwd := IniRead("secrets.ini", "secrets", "podPwd")
-ADUser := IniRead("secrets.ini", "secrets", "ADUser")
-ADEmail := IniRead("secrets.ini", "secrets", "ADEmail")
+ADUser := A_UserName
+ADEmail := A_UserName "@" StrLower(EnvGet("USERDNSDOMAIN"))
 ADPwd := IniRead("secrets.ini", "secrets", "ADPwd")
-ADDom := IniRead("secrets.ini", "secrets", "ADDom")
+ADDom := StrLower(EnvGet("USERDOMAIN"))
 
 ; Grabs the users full name
 fullName := RegRead("HKEY_CURRENT_USER\Software\Microsoft\Office\Common\UserInfo", "UserName")
