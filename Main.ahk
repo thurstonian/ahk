@@ -159,14 +159,4 @@ fullName := RegRead("HKEY_CURRENT_USER\Software\Microsoft\Office\Common\UserInfo
 			SendText(ADDom)
 		}
 	}
-
-	#HotIf (WinActive("Sign in to Cisco Finesse"))
-	{
-		^+l:: {
-			Send("{Tab}+{Tab}")
-			SendText(ADEmail)
-			Send("{Tab}")
-			SendText(ADPwd)
-		}
-	}
 }
