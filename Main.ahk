@@ -133,7 +133,7 @@ fullName := RegRead("HKEY_CURRENT_USER\Software\Microsoft\Office\Common\UserInfo
 ;; Unfortunately, what my company uses. Thanks, javascript.
 #HotIf (WinActive("ahk_exe chrome.exe"))
 {
-	#HotIf (WinActive("Incident"))
+	#HotIf (WinActive("Incident") || WinActive("Compose Email"))
 	{
 		^+s:: SendText(sig)
 	}
